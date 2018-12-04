@@ -27,4 +27,54 @@ class Wechat{
 		//输出微信api的access_token
 		return $data->access_token;
 	}
+
+	//创建个性化菜单
+	public function getMeun(){
+		//获取token
+		$token = this->getToken();
+
+		//请求微信api
+		$url = 'https://api.weixin.qq.com/cgi-bin/menu/addconditional?access_token='.$token;
+
+		$json ={
+			"button":[
+				{    
+					"type":"click",
+					"name":"今日歌曲",
+					"key":"V1001_TODAY_MUSIC" 
+				},
+				{
+					"name":"菜单",
+					"sub_button":[
+						{            
+						"type":"view",
+						"name":"搜索",
+						"url":"http://www.soso.com/"
+						},
+						{
+						"type":"miniprogram",
+						"name":"wxa",
+						"url":"http://mp.weixin.qq.com",
+						"appid":"wx286b93c14bbf93aa",
+						"pagepath":"pages/lunar/index"
+						},
+						{
+						"type":"click",
+						"name":"赞一下我们",
+						"key":"V1001_GOOD"
+						}
+					]
+				}
+			],
+			"matchrule":{
+				"tag_id":"2",
+				"sex":"1",
+				"country":"中国",
+				"province":"广东",
+				"city":"广州",
+				"client_platform_type":"2",
+				"language":"zh_CN"
+			}
+			}
+	}
 }
