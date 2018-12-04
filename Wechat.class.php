@@ -78,3 +78,6 @@ class Wechat{
 			}
 	}
 }
+
+$obj = new NewWeixin;
+var_dump($obj->setMenu());
